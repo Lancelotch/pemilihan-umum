@@ -31,12 +31,10 @@ router.post("/", (req, res) => {
         points: parseInt(vote.points),
         location: vote.location
       });
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "Terimakasih atas pemilihan suaranya"
-        });
+      return res.status(200).json({
+        success: true,
+        message: "Terimakasih atas pemilihan suaranya"
+      });
     })
     .catch(error => {
       console.log(error);

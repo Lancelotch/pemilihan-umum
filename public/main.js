@@ -20,7 +20,7 @@ fetch("https://monggo-voting.herokuapp.com/polling")
   .then(response => response.json())
   .then(data => {
     const votes = data.votes;
-    const totalVotes = votes.length;
+    //const totalVotes = votes.length;
     const voteCounts = votes.reduce((acc, vote) => {
       //console.log("acc", acc);
       //equal with return acc[vote.location] = (acc[vote.location] || 0) + parseInt(vote.points), acc
@@ -41,7 +41,7 @@ fetch("https://monggo-voting.herokuapp.com/polling")
         animationEnabled: true,
         theme: "theme1",
         title: {
-          text: `Jumlah voting yang masuk (Real count) : ${totalVotes}`
+          text: `Real Count`
         },
         data: [
           {
@@ -61,6 +61,7 @@ fetch("https://monggo-voting.herokuapp.com/polling")
 
       var channel = pusher.subscribe("monggo-polling");
       channel.bind("monggo-vote", function(data) {
+        totalVotes += data.points;
         dataPoints = dataPoints.map(point => {
           if (point.label === data.location) {
             point.y += data.points;
