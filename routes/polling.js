@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 var Pusher = require("pusher");
+const mongoose = require("mongoose");
+const VoteOuting = require("../models/voteOuting");
 
 var channels_client = new Pusher({
   appId: "832907",
@@ -11,15 +13,34 @@ var channels_client = new Pusher({
 });
 
 router.get("/", (req, res) => {
-  res.send("Sip dah jalan-jalan");
+  VoteOuting.find()
+    .then(votes => res.status(200).json({ message: "success", votes: votes }))
+    .catch(error => console.log(error));
 });
 
 router.post("/", (req, res) => {
-  channels_client.trigger("monggo-polling", "monggo-vote", {
+  const newVote = {
     points: 1,
     location: req.body.location
-  });
-  return res.status(200).json({success: true, message: "Terimakasih atas pemilihan suaranya"})
+  };
+
+  new VoteOuting(newVote)
+    .save()
+    .then(vote => {
+      channels_client.trigger("monggo-polling", "monggo-vote", {
+        points: parseInt(vote.points),
+        location: vote.location
+      });
+      return res
+        .status(200)
+        .json({
+          success: true,
+          message: "Terimakasih atas pemilihan suaranya"
+        });
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 module.exports = router;

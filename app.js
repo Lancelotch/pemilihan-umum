@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const polling = require('./routes/polling');
 
+//DB config
+require('./config/db');
+
 const app = express();
 
 //Set public folder
