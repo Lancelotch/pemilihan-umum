@@ -6,3 +6,5 @@ tech :
 * monggoDb
 * pusher
 * javascript
+* canvasJs
+* Jquery
