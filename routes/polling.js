@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  channels_client.trigger("location-polling", "location-vote", {
+  channels_client.trigger("monggo-polling", "monggo-vote", {
     points: 1,
     location: req.body.location
   });

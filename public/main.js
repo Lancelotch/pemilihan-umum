@@ -39,4 +39,24 @@ if (chartContainer) {
     ]
   });
   chart.render();
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+  var pusher = new Pusher('a7f4319adef7c6a424fb', {
+    cluster: 'mt1',
+    forceTLS: true
+  });
+
+  var channel = pusher.subscribe('monggo-polling');
+  channel.bind('monggo-vote', function(data) {
+    dataPoints = dataPoints.map(point=> {
+        if(point.label === data.location){
+            point.y += data.points;
+            return point;
+        }else{
+            return point;
+        }
+    });
+    chart.render();
+  });
 }
