@@ -21,8 +21,8 @@ app.use(cors());
 
 app.use('/polling', polling);
 
-const port = 5000;
+const PORT = process.env.PORT || 8080;
 
-app.listen(port, ()=> {
-    console.log(`Server has started from port : ${port}`);
+app.listen(PORT, ()=> {
+    console.log(`Server has started from port : ${process.env.PORT}`);
 })
