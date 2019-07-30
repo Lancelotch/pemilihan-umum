@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <title>pemilihan umum</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pemungutan Suara Tempat Outing</h1>
+      <p>Pilih tempat outing favoritmu :</p>
+      <form id="vote-form">
+        <p>
+          <label>
+            <input type="radio" name="vote" id="pulau" value="Pulau" />
+            <span>Pulau</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input type="radio" name="vote" id="gunung" value="Pulau" />
+            <span>Gunung</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input type="radio" name="vote" id="pantai" value="Pulau" />
+            <span>Pantai</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input type="radio" name="vote" id="dufan" value="Pulau" />
+            <span>Dufan</span>
+          </label>
+        </p>
+        <button type="submit" value="Vote" class="btn">VOTE</button>
+      </form>
+      <br><br>
+      <div id="chart-container" style="height: 300px;width: 100%"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/5.0.0/pusher.min.js" integrity="sha256-rumnpK3SJCNuEMjj5oRs5bACsVmCP/TKHg6R6MIWiPo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha256-CIc5A981wu9+q+hmFYYySmOvsA3IsoX+apaYlL0j6fg=" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
