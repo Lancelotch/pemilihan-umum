@@ -3,7 +3,7 @@ const form = document.getElementById("vote-form");
 form.addEventListener("submit", e => {
   const choose = document.querySelector("input[name=location]:checked").value;
   const payload = { location: choose };
-  fetch("http://192.168.11.55:8080/polling", {
+  fetch("https://monggo-voting.herokuapp.com/polling", {
     method: "POST",
     body: JSON.stringify(payload),
     headers: new Headers({
@@ -16,7 +16,7 @@ form.addEventListener("submit", e => {
   e.preventDefault();
 });
 
-fetch("http://192.168.11.55:8080/polling")
+fetch("https://monggo-voting.herokuapp.com/polling")
   .then(response => response.json())
   .then(data => {
     const votes = data.votes;
