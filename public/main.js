@@ -21,13 +21,18 @@ fetch("https://monggo-voting.herokuapp.com/polling")
   .then(data => {
     const votes = data.votes;
     //const totalVotes = votes.length;
-    const voteCounts = votes.reduce((acc, vote) => {
+    let voteCounts = {
+      Pulau : 0,
+      Gunung: 0,
+      Pantai: 0,
+      Taman: 0
+    }
+    voteCounts = votes.reduce((acc, vote) => {
       //console.log("acc", acc);
       //equal with return acc[vote.location] = (acc[vote.location] || 0) + parseInt(vote.points), acc
-      acc[vote.location] = (acc[vote.location] || 0) + parseInt(vote.points);
-      return acc;
-    }, {});
-
+      return acc[vote.location] = (acc[vote.location] || 0) + parseInt(vote.points), acc
+    }, {...voteCounts});
+    
     let dataPoints = [
       { label: "Pulau", y: voteCounts.Pulau },
       { label: "Gunung", y: voteCounts.Gunung },
@@ -61,6 +66,8 @@ fetch("https://monggo-voting.herokuapp.com/polling")
 
       var channel = pusher.subscribe("monggo-polling");
       channel.bind("monggo-vote", function(data) {
+        console.log("data", data);
+        
         dataPoints = dataPoints.map(point => {
           if (point.label === data.location) {
             point.y += data.points;
