@@ -11,7 +11,7 @@ form.addEventListener("submit", e => {
     })
   })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => alert(data.message))
     .catch(error => console.log(error));
   e.preventDefault();
 });
@@ -32,7 +32,7 @@ fetch("https://monggo-voting.herokuapp.com/polling")
       //equal with return acc[vote.location] = (acc[vote.location] || 0) + parseInt(vote.points), acc
       return acc[vote.location] = (acc[vote.location] || 0) + parseInt(vote.points), acc
     }, {...voteCounts});
-    
+
     let dataPoints = [
       { label: "Pulau", y: voteCounts.Pulau },
       { label: "Gunung", y: voteCounts.Gunung },
@@ -46,7 +46,7 @@ fetch("https://monggo-voting.herokuapp.com/polling")
         animationEnabled: true,
         theme: "theme1",
         title: {
-          text: `Real Count`
+          text: `Real Time Voting`
         },
         data: [
           {
@@ -66,8 +66,6 @@ fetch("https://monggo-voting.herokuapp.com/polling")
 
       var channel = pusher.subscribe("monggo-polling");
       channel.bind("monggo-vote", function(data) {
-        console.log("data", data);
-        
         dataPoints = dataPoints.map(point => {
           if (point.label === data.location) {
             point.y += data.points;
