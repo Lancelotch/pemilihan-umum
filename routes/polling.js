@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
       });
       return res.status(200).json({
         success: true,
-        message: "Terimakasih atas pemilihan suaranya"
+        message: "Terimakasih atas partisipasinya teman-teman"
       });
     })
     .catch(error => {

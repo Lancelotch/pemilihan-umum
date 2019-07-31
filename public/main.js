@@ -61,7 +61,6 @@ fetch("https://monggo-voting.herokuapp.com/polling")
 
       var channel = pusher.subscribe("monggo-polling");
       channel.bind("monggo-vote", function(data) {
-        totalVotes += data.points;
         dataPoints = dataPoints.map(point => {
           if (point.label === data.location) {
             point.y += data.points;
