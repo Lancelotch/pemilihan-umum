@@ -1,5 +1,5 @@
 # Monggo voting
-simple real time pooling application using pusher
+simple real time pooling application using pusher,
 In this project i'm using :
 * nodejs
 * express
