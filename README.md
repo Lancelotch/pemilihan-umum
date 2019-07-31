@@ -8,4 +8,4 @@ tech :
 * javascript
 * canvasJs
 * Jquery
-* Materializecss
+* Materialize
